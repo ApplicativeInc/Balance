@@ -19,11 +19,24 @@ var playButton;
 var gameOverText;
 var restartText;
 
+function renderBackground() {
+    game.stage.backgroundColor = '#FFFFFF';
+    var graphics = game.add.graphics(0, 0);
+    graphics.lineStyle(0);
+    var inner = 600;
+    var width = 10;
+    var backgroundColor = 0x000000;
+    var opacity = 0.06;
+    for (var inner = 600; inner >= 0; inner -= 20) {
+        graphics.beginFill(0x000000, opacity);
+        graphics.drawCircle(400, 300, inner);
+    }
+}
+
 function create() {
+    renderBackground();
     cursors = game.input.keyboard.createCursorKeys();
     playButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-    game.add.sprite(0, 0, 'sky');
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
