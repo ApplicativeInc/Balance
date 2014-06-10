@@ -10,6 +10,8 @@ var player;
 var cursors;
 var score = 0;
 var scoreText;
+var highScore = 0;
+var highScoreText;
 var star;
 var star_x;
 var star_y;
@@ -50,6 +52,7 @@ function create() {
     createNewStar(stars);
 
     scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+    highScoreText = game.add.text(320, 16, 'High Score: 0', {fontSize: '32px', fill: '#000'});
     lifeText = game.add.text(680, 16, 'Life: ' + life, {fontSize: '32px', fill: '#000'});
 }
 
@@ -100,6 +103,10 @@ function setLife(n) {
 
 function setScore(n) {
     score = n;
+    if (score > highScore) {
+        highScore = score;
+        highScoreText.text = 'High Score: ' + highScore;
+    }
     scoreText.text = 'Score: ' + score;
 }
 
