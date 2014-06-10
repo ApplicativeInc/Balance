@@ -105,9 +105,9 @@ function setScore(n) {
     score = n;
     if (score > highScore) {
         highScore = score;
-        highScoreText.text = 'High Score: ' + highScore;
+        highScoreText.text = 'High Score: ' + Math.floor(highScore);
     }
-    scoreText.text = 'Score: ' + score;
+    scoreText.text = 'Score: ' + Math.floor(score);
 }
 
 function update() {
@@ -122,15 +122,17 @@ function update() {
     } else {
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
+        player.body.velocity.x += (400 - player.body.x) / 20;
+        player.body.velocity.y += (300 - player.body.y) / 20;
 
         if (cursors.left.isDown) {
-            player.body.velocity.x -= 10;
+            player.body.velocity.x -= 20;
         } else if (cursors.right.isDown) {
-            player.body.velocity.x += 10;
+            player.body.velocity.x += 20;
         } else if (cursors.up.isDown) {
-            player.body.velocity.y -= 10;
+            player.body.velocity.y -= 20;
         } else if (cursors.down.isDown) {
-            player.body.velocity.y += 10;
+            player.body.velocity.y += 20;
         }
         star.body.x = star_x + (Math.random() - 0.5) * 2;
         star.body.y = star_y + (Math.random() - 0.5) * 2;
