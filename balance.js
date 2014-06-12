@@ -122,6 +122,8 @@ function update() {
     } else {
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
+        player.body.velocity.x *= 0.995;
+        player.body.velocity.y *= 0.995;
         player.body.velocity.x += (400 - player.body.x) / 20;
         player.body.velocity.y += (300 - player.body.y) / 20;
 
