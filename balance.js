@@ -58,7 +58,7 @@ function create() {
 
 function collectStar(player, star) {
     star.kill();
-    setScore(score + 10 * Math.abs(player.body.velocity.x));
+    setScore(score + 10 * Math.abs(player.body.velocity.getMagnitude()));
     createNewStar(stars);
 }
 
