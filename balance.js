@@ -54,6 +54,17 @@ function create() {
     scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
     highScoreText = game.add.text(320, 16, 'High Score: 0', {fontSize: '32px', fill: '#000'});
     lifeText = game.add.text(680, 16, 'Life: ' + life, {fontSize: '32px', fill: '#000'});
+
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', deviceOrientationHandler);
+    }
+}
+
+function deviceOrientationHandler(eventData) {
+    var dx = eventData.beta;
+    player.body.velocity.x += dx;
+    var dy = eventData.gamma;
+    player.body.velocity.y += dy;
 }
 
 function collectStar(player, star) {
@@ -122,8 +133,8 @@ function update() {
     } else {
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
-        player.body.velocity.x *= 0.995;
-        player.body.velocity.y *= 0.995;
+        player.body.velocity.x *= 0.99;
+        player.body.velocity.y *= 0.99;
         player.body.velocity.x += (400 - player.body.x) / 20;
         player.body.velocity.y += (300 - player.body.y) / 20;
 
